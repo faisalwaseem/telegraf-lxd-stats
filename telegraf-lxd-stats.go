@@ -72,7 +72,7 @@ func strToUint64(s string) uint64 {
 }
 
 func fakeDial(proto, addr string) (conn net.Conn, err error) {
-	return net.Dial("unix", "/var/lib/lxd/unix.socket")
+	return net.Dial("unix", "/var/snap/lxd/common/lxd/unix.socket")
 }
 
 func sendHttpReq(path string) []byte {
@@ -175,56 +175,56 @@ func genCgroupTaskList(lxdList []string) []CgroupTask {
 		var t CgroupTask
 		t.cgroupItem = "blkio.throttle.io_serviced"
 		t.lxcName = lxd
-		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/blkio/lxc/%s/blkio.throttle.io_serviced", lxd)
+		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/blkio/lxc.monitor/%s/blkio.throttle.io_serviced", lxd)
 		tasks = append(tasks, t)
 	}
 	for _, lxd := range lxdList {
 		var t CgroupTask
 		t.cgroupItem = "blkio.throttle.io_service_bytes"
 		t.lxcName = lxd
-		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/blkio/lxc/%s/blkio.throttle.io_service_bytes", lxd)
+		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/blkio/lxc.monitor/%s/blkio.throttle.io_service_bytes", lxd)
 		tasks = append(tasks, t)
 	}
 	for _, lxd := range lxdList {
 		var t CgroupTask
 		t.cgroupItem = "memory.usage_in_bytes"
 		t.lxcName = lxd
-		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/memory/lxc/%s/memory.usage_in_bytes", lxd)
+		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/memory/lxc.monitor/%s/memory.usage_in_bytes", lxd)
 		tasks = append(tasks, t)
 	}
 	for _, lxd := range lxdList {
 		var t CgroupTask
 		t.cgroupItem = "memory.limit_in_bytes"
 		t.lxcName = lxd
-		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/memory/lxc/%s/memory.limit_in_bytes", lxd)
+		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/memory/lxc.monitor/%s/memory.limit_in_bytes", lxd)
 		tasks = append(tasks, t)
 	}
 	for _, lxd := range lxdList {
 		var t CgroupTask
 		t.cgroupItem = "memory.memsw.usage_in_bytes"
 		t.lxcName = lxd
-		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/memory/lxc/%s/memory.memsw.usage_in_bytes", lxd)
+		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/memory/lxc.monitor/%s/memory.memsw.usage_in_bytes", lxd)
 		tasks = append(tasks, t)
 	}
 	for _, lxd := range lxdList {
 		var t CgroupTask
 		t.cgroupItem = "memory.memsw.limit_in_bytes"
 		t.lxcName = lxd
-		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/memory/lxc/%s/memory.memsw.limit_in_bytes", lxd)
+		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/memory/lxc.monitor/%s/memory.memsw.limit_in_bytes", lxd)
 		tasks = append(tasks, t)
 	}
 	for _, lxd := range lxdList {
 		var t CgroupTask
 		t.cgroupItem = "cpuacct.usage"
 		t.lxcName = lxd
-		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/cpu,cpuacct/lxc/%s/cpuacct.usage", lxd)
+		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/cpu,cpuacct/lxc.monitor/%s/cpuacct.usage", lxd)
 		tasks = append(tasks, t)
 	}
 	for _, lxd := range lxdList {
 		var t CgroupTask
 		t.cgroupItem = "cpuset.cpus"
 		t.lxcName = lxd
-		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/cpuset/lxc/%s/cpuset.cpus", lxd)
+		t.cgroupPath = fmt.Sprintf("/sys/fs/cgroup/cpuset/lxc.monitor/%s/cpuset.cpus", lxd)
 		tasks = append(tasks, t)
 	}
 	return tasks
